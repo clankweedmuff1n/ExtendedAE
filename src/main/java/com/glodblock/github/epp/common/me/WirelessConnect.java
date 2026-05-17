@@ -101,7 +101,9 @@ public class WirelessConnect implements IActionHost {
                         sideB.connection.getConnection().destroy();
                         sideB.connection = new ConnectionWrapper(null);
                     }
-                    sideA.connection = sideB.connection = new ConnectionWrapper(GridHelper.createGridConnection(sideA.getNode(), sideB.getNode()));
+                    if (sideA.getNode() != null && sideB.getNode() != null) {
+                        sideA.connection = sideB.connection = new ConnectionWrapper(GridHelper.createGridConnection(sideA.getNode(), sideB.getNode()));
+                    }
                 } catch (FailedConnectionException e) {
                     EPP.LOGGER.debug(e.getMessage());
                 }
